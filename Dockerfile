@@ -46,5 +46,12 @@ RUN chmod +x cairo1-run
 
 COPY cairo-vm-cli ./
 RUN chmod +x cairo-vm-cli
+
+
+COPY cairo-vm-env ./
+RUN chmod +x cairo-vm-env
+
+COPY fibonacci.cairo ./
+
 # entry point
 ENTRYPOINT [ "/app/setup.sh" ]

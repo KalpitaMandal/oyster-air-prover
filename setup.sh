@@ -19,7 +19,12 @@ iptables -L -t nat
 
 # ls /params
 
-ls app
+# activate the cairo-vm-env
+echo "Starting virtual env"
+source /app/activate
+make deps
+
+ls /app
 cat /app/id.sec
 cat /app/secp.sec
 

@@ -48,10 +48,14 @@ COPY cairo-vm-cli ./
 RUN chmod +x cairo-vm-cli
 
 
-COPY cairo-vm-env ./
-RUN chmod +x cairo-vm-env
+COPY activate ./
+RUN chmod +x activate
 
 COPY fibonacci.cairo ./
+
+# corelib install
+COPY corelib ./corelib 
+#RUN chmod +x corelib
 
 # entry point
 ENTRYPOINT [ "/app/setup.sh" ]

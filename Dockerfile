@@ -13,7 +13,7 @@ RUN ./docker_common_deps.sh
 RUN chown -R starkware:starkware /app
 
 # install dependency tools
-RUN apk add --no-cache net-tools iptables iproute2 wget
+RUN apt-install net-tools iptables iproute2 wget
 
 # Install Cairo0 for end-to-end test.
 RUN pip install cairo-lang==0.13.2

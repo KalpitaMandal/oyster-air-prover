@@ -4,8 +4,8 @@ FROM ciimage/python:3.9 as base_image
 RUN apt update
 # RUN apt install -y python3.9-dev git wget gnupg2 elfutils libdw-dev python3-pip libgmp3-dev unzip
 # install dependency tools
-RUN apt install -y net-tools iptables iproute2 wget python3.9-dev libgmp3-dev 
-RUN pip install fastecdsa
+RUN apt install -y net-tools iptables iproute2 wget 
+# RUN pip install fastecdsa
 
 # Install Cairo0 for end-to-end test.
 # RUN pip install cairo-lang==0.13.2

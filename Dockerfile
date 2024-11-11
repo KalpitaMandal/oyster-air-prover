@@ -1,6 +1,9 @@
 # base image
 FROM ciimage/python:3.9 as base_image
 
+COPY install_deps.sh /app/
+RUN /app/install_deps.sh
+
 # Install Cairo0 for end-to-end test.
 RUN pip install cairo-lang==0.13.2
 

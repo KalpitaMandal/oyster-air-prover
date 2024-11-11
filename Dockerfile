@@ -5,8 +5,8 @@ FROM alpine:3.17
 RUN apk add --no-cache net-tools iptables iproute2 wget
 # FROM ciimage/python:3.9 as base_image
 
-# RUN apt update
 # # install dependency tools
+# RUN apt update
 # RUN apt install -y net-tools iptables iproute2 wget 
 
 

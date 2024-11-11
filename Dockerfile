@@ -1,14 +1,14 @@
 # base image
-FROM ciimage/python:3.9 as base_image
+FROM alpine:3.17
 
-RUN apt update
 # install dependency tools
-RUN apt install -y net-tools iptables iproute2 wget 
+RUN apk add --no-cache net-tools iptables iproute2 wget
+# FROM ciimage/python:3.9 as base_image
 
-# COPY docker_common_deps.sh /app/
-# WORKDIR /app/
-# RUN ./docker_common_deps.sh
-# RUN chown -R starkware:starkware /app
+# RUN apt update
+# # install dependency tools
+# RUN apt install -y net-tools iptables iproute2 wget 
+
 
 # working directory
 WORKDIR /app

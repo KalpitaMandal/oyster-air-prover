@@ -1,7 +1,7 @@
 # base image
 FROM ciimage/python:3.9 as base_image
 
-# RUN apt update
+RUN apt update
 # RUN apt install -y python3.9-dev git wget gnupg2 elfutils libdw-dev python3-pip libgmp3-dev unzip
 # install dependency tools
 RUN apt install -y net-tools iptables iproute2 wget

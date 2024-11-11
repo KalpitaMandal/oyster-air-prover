@@ -1,11 +1,13 @@
 # base image
 FROM ciimage/python:3.9 as base_image
 
-COPY install_deps.sh /app/
-RUN /app/install_deps.sh
+RUN apt update
+# RUN apt install -y python3.9-dev git wget gnupg2 elfutils libdw-dev python3-pip libgmp3-dev unzip
 
-# Install Cairo0 for end-to-end test.
-RUN pip install cairo-lang==0.13.2
+RUN pip install --upgrade pip
+RUN pip install cpplint pytest numpy
+
+RUN apt install -y clang-12 clang-format-12 clang-tidy-6.0 libclang-12-dev llvm-12
 
 COPY docker_common_deps.sh /app/
 WORKDIR /app/
@@ -13,7 +15,7 @@ RUN ./docker_common_deps.sh
 RUN chown -R starkware:starkware /app
 
 # install dependency tools
-RUN apt install net-tools iptables iproute2 wget
+RUN apt install -y net-tools iptables iproute2 wget
 
 # Install Cairo0 for end-to-end test.
 RUN pip install cairo-lang==0.13.2

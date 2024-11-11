@@ -17,11 +17,18 @@ iptables -L -t nat
 # /app/keygen --secret /app/id.sec --public /app/id.pub
 # /app/oyster-keygen --secret /app/secp.sec --public /app/secp.pub
 
-# ls /params
-
-# ls app
+ls app
 # cat /app/id.sec
 # cat /app/secp.sec
+
+/app/cpu_air_prover \
+    --out_file=/app/fibonacci_proof.json \
+    --private_input_file=/app/fibonacci_private_input.json \
+    --public_input_file=/app/fibonacci_public_input.json \
+    --prover_config_file=/app/cpu_air_prover_config.json \
+    --parameter_file=/app/cpu_air_params.json
+
+/app/cpu_air_verifier --in_file=/app/fibonacci_proof.json && echo "Successfully verified example proof."
 
 # starting supervisord
 /app/supervisord

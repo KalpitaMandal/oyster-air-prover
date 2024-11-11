@@ -1,13 +1,13 @@
 # base image
-FROM alpine:3.17
-
-# install dependency tools
-RUN apk add --no-cache net-tools iptables iproute2 wget
-# FROM ciimage/python:3.9 as base_image
+# FROM alpine:3.17
 
 # # install dependency tools
-# RUN apt update
-# RUN apt install -y net-tools iptables iproute2 wget 
+# RUN apk add --no-cache net-tools iptables iproute2 wget
+FROM ciimage/python:3.9 as base_image
+
+# install dependency tools
+RUN apt-get update
+RUN apt-get install -y net-tools iptables iproute2 wget 
 
 
 # working directory

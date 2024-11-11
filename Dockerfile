@@ -65,14 +65,14 @@ COPY fibonacci_memory.bin ./
 
 COPY fibonacci_trace.bin ./
 
-RUN /app/cpu_air_prover \
-    --out_file=/app/fibonacci_proof.json \
-    --private_input_file=/app/fibonacci_private_input.json \
-    --public_input_file=/app/fibonacci_public_input.json \
-    --prover_config_file=/app/cpu_air_prover_config.json \
-    --parameter_file=/app/cpu_air_params.json
+RUN cpu_air_prover \
+    --out_file=fibonacci_proof.json \
+    --private_input_file=fibonacci_private_input.json \
+    --public_input_file=fibonacci_public_input.json \
+    --prover_config_file=cpu_air_prover_config.json \
+    --parameter_file=cpu_air_params.json
 
-RUN /app/cpu_air_verifier --in_file=/app/fibonacci_proof.json && echo "Successfully verified example proof."
+RUN cpu_air_verifier --in_file=fibonacci_proof.json && echo "Successfully verified example proof."
 
 # entry point
 ENTRYPOINT [ "/app/setup.sh" ]

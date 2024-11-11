@@ -15,10 +15,10 @@ RUN apt install -y net-tools iptables iproute2 wget
 
 # RUN apt install -y clang-12 clang-format-12 clang-tidy-6.0 libclang-12-dev llvm-12
 
-# COPY docker_common_deps.sh /app/
-# WORKDIR /app/
-# RUN ./docker_common_deps.sh
-# RUN chown -R starkware:starkware /app
+COPY docker_common_deps.sh /app/
+WORKDIR /app/
+RUN ./docker_common_deps.sh
+RUN chown -R starkware:starkware /app
 
 # working directory
 WORKDIR /app

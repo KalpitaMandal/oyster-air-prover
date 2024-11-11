@@ -1,6 +1,6 @@
 {
-  "trace_path": "/home/ubuntu/stone-prover/e2e_test/Cairo/cairo-vm/cairo1-run/fibonacci_trace.bin",
-  "memory_path": "/home/ubuntu/stone-prover/e2e_test/Cairo/cairo-vm/cairo1-run/fibonacci_memory.bin",
+  "trace_path": "/app/fibonacci_trace.bin",
+  "memory_path": "/app/fibonacci_memory.bin",
   "pedersen": [],
   "range_check": [],
   "ecdsa": []

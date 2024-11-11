@@ -64,16 +64,22 @@ COPY cpu_air_verifier ./
 RUN chmod +x cpu_air_verifier
 
 COPY fibonacci_private_input.json ./
-RUN chmod +x fibonacci_private_input.json
+# RUN chmod +x fibonacci_private_input.json
 
 COPY fibonacci_public_input.json ./
-RUN chmod +x fibonacci_public_input.json
+# RUN chmod +x fibonacci_public_input.json
 
 COPY cpu_air_prover_config.json ./
-RUN chmod +x cpu_air_prover_config.json
+# RUN chmod +x cpu_air_prover_config.json
 
 COPY cpu_air_params.json ./
-RUN chmod +x cpu_air_params.json
+# RUN chmod +x cpu_air_params.json
+
+COPY fibonacci_memory.bin ./
+# RUN chmod +x fibonacci_memory.bin
+
+COPY fibonacci_trace.bin ./
+# RUN chmod +x fibonacci_trace.bin
 
 RUN /app/cpu_air_prover \
     --out_file=/app/fibonacci_proof.json \

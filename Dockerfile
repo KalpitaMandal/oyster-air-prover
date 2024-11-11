@@ -1,5 +1,13 @@
 # base image
-FROM alpine:3.17
+FROM ciimage/python:3.9 as base_image
+
+# Install Cairo0 for end-to-end test.
+RUN pip install cairo-lang==0.13.2
+
+COPY docker_common_deps.sh /app/
+WORKDIR /app/
+RUN ./docker_common_deps.sh
+RUN chown -R starkware:starkware /app
 
 # install dependency tools
 RUN apk add --no-cache net-tools iptables iproute2 wget
@@ -41,21 +49,32 @@ COPY supervisord.conf /etc/supervisord.conf
 COPY setup.sh ./
 RUN chmod +x setup.sh
 
-COPY cairo1-run ./
-RUN chmod +x cairo1-run
+COPY cpu_air_prover ./
+RUN chmod +x cpu_air_prover
 
-COPY cairo-vm-cli ./
-RUN chmod +x cairo-vm-cli
+COPY cpu_air_verifier ./
+RUN chmod +x cpu_air_verifier
 
+COPY fibonacci_private_input.json ./
+RUN chmod +x fibonacci_private_input.json
 
-COPY activate ./
-RUN chmod +x activate
+COPY fibonacci_public_input.json ./
+RUN chmod +x fibonacci_public_input.json
 
-COPY fibonacci.cairo ./
+COPY cpu_air_prover_config.json ./
+RUN chmod +x cpu_air_prover_config.json
 
-# corelib install
-COPY corelib ./corelib 
-#RUN chmod +x corelib
+COPY cpu_air_params.json ./
+RUN chmod +x cpu_air_params.json
+
+RUN cpu_air_prover \
+    --out_file=fibonacci_proof.json \
+    --private_input_file=fibonacci_private_input.json \
+    --public_input_file=fibonacci_public_input.json \
+    --prover_config_file=cpu_air_prover_config.json \
+    --parameter_file=cpu_air_params.json
+
+RUN cpu_air_verifier --in_file=fibonacci_proof.json && echo "Successfully verified example proof."
 
 # entry point
 ENTRYPOINT [ "/app/setup.sh" ]
